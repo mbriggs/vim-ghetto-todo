@@ -1,12 +1,13 @@
-syntax region todoDone start=/\[x\]:/ end=/$/
-hi def todoDoneDefinition gui=italic guifg=#0020A0 guibg=LightGray
-hi link todoDone todoDoneDefinition
+if exists("b:current_syntax")
+  finish
+endif
 
-syntax region todoTodo start=/^\[ \]/ end=/:/
-hi def todoTodoDefinition guifg=DarkRed guibg=LightGray
-hi link todoTodo todoTodoDefinition
+syn region todo start=/^ *\[.\?\]:/ end=/ / contains=todoDone,todoTodo transparent keepend
 
-syntax region todoHeader start=/^\./ end=/$/
-hi def todoHeaderDefinition gui=bold guifg=Yellow
-hi link todoHeader todoHeaderDefinition
+syn match todoDone   /\[x\]:.*$/ contained
+syn match todoTodo   /\[ \]:/ contained
+syn match todoHeader /^ *-.*$/ 
 
+hi link todoDone Comment
+hi link todoTodo Statement
+hi link todoHeader Keyword
