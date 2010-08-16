@@ -15,10 +15,10 @@ fun! MakeToDo()
   let savepos = getpos('.')
   if getline('.') =~ '^ *\[.\]:'
     s/^\( *\)\[.\]: */\1/
-    let savepos[2] = savepos[2] - 4
+    let savepos[2] = savepos[2] - 5
   else
     s/^\( *\)/\1[ ]: /
-    let savepos[2] = savepos[2] + 4
+    let savepos[2] = savepos[2] + 5
   end
   call setpos('.', savepos)
 endfun
